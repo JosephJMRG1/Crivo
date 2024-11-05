@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package crivo;
 import java.io.File;
 import javax.sound.sampled.AudioFileFormat;
@@ -26,7 +22,7 @@ public class Grabadora {
             tD = (TargetDataLine) AudioSystem.getLine(dLI);
             new CapThread().start();
             System.out.println("Grabando durante 5s...");
-            Thread.sleep(5000);
+            Thread.sleep(5000);//5 segundos de grabacion
             tD.close();
             
         }catch(Exception e){}
