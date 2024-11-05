@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package crivo;
 
 import javax.sound.sampled.*;
@@ -18,13 +15,7 @@ import org.quifft.output.FrequencyBin;
 
 import org.jfree.chart.axis.LogarithmicAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,10 +45,12 @@ public class Crivo {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         Crivo visualizer = new Crivo();  // Cambié el nombre a Crivo
+        FFTDataExtractor extractor = new FFTDataExtractor("E:\\Universidad\\Programacion\\Java\\Crivo\\grabacion.wav");
         grapher.initializeGraph();
         visualizer.visualizeSpectrum();
+        extractor.extractFFTData();
     }
 
     public void visualizeSpectrum() {
@@ -65,6 +58,7 @@ public class Crivo {
         QuiFFT quiFFT = null;
         try {
             quiFFT = new QuiFFT(song).windowSize(8192).windowOverlap(0.75);
+           
         } catch (IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
@@ -72,7 +66,7 @@ public class Crivo {
         System.out.println(fftStream);
 
         // Compute first frame
-        nextFrame = fftStream.next();
+        nextFrame = fftStream.next();        
 
         // Start playing audio
         try {
